@@ -6,28 +6,28 @@ let part2 = require("./Part2.ts")
 let inputTest: string = input.inputTest
 
 describe("Advent Calendar", function () {
-  describe("HistorianHysteria", function () {
-    it("should return 11", function () {
+  describe("SecretEntrance", function () {
+    it("should return 3", function () {
       var result =
-        part1.HistorianHysteria(
+        part1.SecretEntrance(
           inputTest
         )
       assert.equal(
         result,
-        11
+        3
       )
     })
   })
 
-  describe("HistorianHysteria2", function () {
-    it("should return 31", function () {
+  describe("SecretEntrance2", function () {
+    it("should return 6", function () {
       var result =
-        part2.HistorianHysteria(
+        part2.SecretEntrance(
           inputTest
         )
       assert.equal(
         result,
-        31
+        6
       )
     })
   })

@@ -1,23 +1,32 @@
-export function HistorianHysteria(input: string): number {
-    const lists = input.split("\n")
-    let list1: number[] = []
-    let list2: number[]= []
-    lists.forEach(l=>{
-       const lsplited = l.split('   ')
-       list1.push(Number(lsplited[0]))
-       list2.push(Number(lsplited[1]))
-    })
-
-    let distances = 0
-
-    for (let i = 0; i < list1.length; i++) {
-        let countInList2 = 0
-        for (let j=0; j< list2.length; j++){
-            if (list1[i] == list2[j]){
-                countInList2++;
+export function SecretEntrance(input: string): number {
+    const list = input.split("\n")
+    let dial = 50
+    let result = 0
+    list.forEach(l => {
+        let numberToMove = l.substring(1)
+        if (l[0] == 'L') {
+            for (let i = 0; i < parseInt(numberToMove); i++) {
+                if (dial == 100) {
+                    result++
+                }
+                if (dial == 0) {
+                    result++
+                    dial = 100
+                }
+                dial--
+            }
+        } else {
+            for (let i = 0; i < parseInt(numberToMove); i++) {
+                if (dial == 0) {
+                    result++
+                }
+                if (dial == 100) {
+                    result++
+                    dial = 0
+                }
+                dial++
             }
         }
-        distances += list1[i] * countInList2
-    }
-    return distances
+    })
+    return result
 }

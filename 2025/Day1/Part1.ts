@@ -1,18 +1,37 @@
-export function HistorianHysteria(input: string): number {
-    const lists = input.split("\n")
-    let list1: number[] = []
-    let list2: number[]= []
-    lists.forEach(l=>{
-       const lsplited = l.split('   ')
-       list1.push(Number(lsplited[0]))
-       list2.push(Number(lsplited[1]))
-    })
-    list1.sort((a, b) => a - b);
-    list2.sort((a, b) => a - b);
+export function SecretEntrance(input: string): number {
+    const list = input.split("\n")
+    let dial = 50
+    let result = 0
+    list.forEach(l => {
+        let numberToMove = l.substring(1)
+        if (numberToMove.length > 2) {
+            numberToMove = numberToMove.substring(1)
+        }
+        if (l[0] == 'L') {
+            console.log("numberToMove -", numberToMove)
+            let partial = dial - parseInt(numberToMove)
+            if (partial < 0) {
+                dial = 100 + partial
+            } else {
+                dial -= parseInt(numberToMove)
+            }
+            console.log("dial -", dial)
+        } else {
+            console.log("numberToMove -", numberToMove)
+            let partial = dial + parseInt(numberToMove)
 
-    let distances = 0
-    for (let i = 0; i < list1.length; i++) {
-        distances +=  Math.abs(list1[i] - list2[i])
-    }
-    return distances
+            if (partial > 100) {
+                console.log("partial -", partial)
+                dial = parseInt(numberToMove) - (100 - dial)
+            } else {
+                dial += parseInt(numberToMove)
+            }
+            console.log("dial +", dial)
+        }
+        if (dial == 0 || dial == 100) {
+            console.log("Found at dial ", dial)
+            result++
+        }
+    })
+    return result
 }
